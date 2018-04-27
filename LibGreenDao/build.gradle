@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+def cfg = rootProject.ext
+def db = cfg.db
+def androidDependencies = cfg.androidDependencies
+
+android {
+    compileSdkVersion cfg.androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion cfg.androidMinSdkVersion
+        targetSdkVersion cfg.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //greendao配置
+    greendao {
+        schemaVersion 1                             //版本号，升级时可配置
+        daoPackage'com.pq.test.greendao.dao'     //包名
+        targetGenDir'src/main/java'                 //生成目录
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation androidDependencies.support_v7
+    testImplementation cfg.junitLib.junit
+
+    compile db.greendao
+    compile db.sqlcipher
+}
