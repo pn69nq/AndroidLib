@@ -1,1 +1,1 @@
-include ':app', ':LibGreenDao', ':LibNetWork'
+include ':app', ':LibGreenDao', ':LibNetWork', ':LibImageloader',':fresco-helper'

@@ -62,8 +62,8 @@ dependencies {
     api 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
 
     if(!frescoIsLib.toBoolean()){
-        implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-        implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+        implementation cfg.network.okhttp
+        implementation cfg.network.okhttp_logging_interceptor
         implementation androidDependencies.support_v7
         implementation androidDependencies.recyclerView
     }
