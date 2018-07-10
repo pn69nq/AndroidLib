@@ -7,12 +7,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.anbetter.log.MLog;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -67,10 +67,9 @@ public class PictureBrowseAdapter extends PagerAdapter {
     @Override
     public View instantiateItem(@NonNull final ViewGroup container, int position) {
         final PhotoInfo photoInfo = mItems.get(position);
-        MLog.i("photoInfo.originalUrl = " + photoInfo.originalUrl);
+        Log.i("originalUrl = ",photoInfo.originalUrl);
 
         if(isBigImage(photoInfo)) {
-            MLog.i("create Large PhotoView");
             View contentView = createLargePhotoView(container.getContext(), photoInfo);
             container.addView(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             return contentView;
@@ -127,7 +126,6 @@ public class PictureBrowseAdapter extends PagerAdapter {
             @Override
             protected boolean onLevelChange(int level) {
                 int progress = (int) (((double)level/mMaxValue) * 100);
-                MLog.i("progress = " + progress);
                 progressBarView.setProgress(progress);
                 progressBarView.setText(String.format(Locale.getDefault(), "%d%%", progress));
                 if(progress == 100) {
@@ -193,7 +191,6 @@ public class PictureBrowseAdapter extends PagerAdapter {
         imageView.setOnProgressListener(new OnProgressListener() {
             @Override
             public void onProgress(int progress) {
-                MLog.i("progress = " + progress);
                 progressBarView.setProgress(progress);
                 progressBarView.setText(String.format(Locale.getDefault(), "%d%%", progress));
                 if(progress == 100) {
@@ -208,13 +205,11 @@ public class PictureBrowseAdapter extends PagerAdapter {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                            MLog.i("单击: " + ((int) sCoord.x) + ", " + ((int) sCoord.y));
 
                             if (mOnPhotoTapListener != null) {
                                 mOnPhotoTapListener.onPhotoTap(imageView, (int) sCoord.x, ((int) sCoord.y));
                             }
                         } else {
-                            MLog.i("onSingleTapConfirmed onError");
                         }
                         return false;
                     }
@@ -223,13 +218,11 @@ public class PictureBrowseAdapter extends PagerAdapter {
                     public void onLongPress(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                            MLog.i("长按: " + ((int) sCoord.x) + ", " + ((int) sCoord.y));
 
                             if (mOnLongClickListener != null) {
                                 mOnLongClickListener.onLongClick(imageView);
                             }
                         } else {
-                            MLog.i("onLongPress onError");
                         }
                     }
 
@@ -237,9 +230,7 @@ public class PictureBrowseAdapter extends PagerAdapter {
                     public boolean onDoubleTap(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                            MLog.i("双击: " + ((int) sCoord.x) + ", " + ((int) sCoord.y));
                         } else {
-                            MLog.i("onDoubleTap onError");
                         }
                         return false;
                     }

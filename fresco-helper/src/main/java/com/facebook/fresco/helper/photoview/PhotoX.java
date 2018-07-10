@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
-import com.anbetter.log.MLog;
 import com.facebook.fresco.helper.photoview.anim.ViewOptionsCompat;
 import com.facebook.fresco.helper.photoview.entity.PhotoInfo;
 
@@ -129,7 +129,7 @@ public class PhotoX {
                     Bundle bundle = ViewOptionsCompat.makeScaleUpAnimation(mLayoutManager, mThumbnailList);
                     mIntent.putExtras(bundle);
                 } else if (mThumbnailView != null && mOriginalUrl != null) {
-                    MLog.i("mOriginalUrl = " + mOriginalUrl);
+                    Log.i("mOriginalUrl = ", mOriginalUrl);
                     Bundle bundle = ViewOptionsCompat.makeScaleUpAnimation(mThumbnailView, mOriginalUrl);
                     mIntent.putExtras(bundle);
                 }

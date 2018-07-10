@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+    package="com.facebook.fresco.helper">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name="com.android.fresco.demo.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:supportsRtl,android:label,android:theme">
+
+        <activity android:name="com.android.fresco.demo.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.android.fresco.demo.FrescoBaseUseActivity"/>
+        <activity android:name="com.android.fresco.demo.BlurActivity"/>
+        <activity android:name="com.android.fresco.demo.Blur2Activity"/>
+        <activity android:name="com.android.fresco.demo.GifActivity"/>
+        <activity android:name="com.android.fresco.demo.MeiziActivity"/>
+        <activity android:name="com.android.fresco.demo.WebpActivity"/>
+        <activity android:name="com.android.fresco.demo.BigImageActivity"/>
+        <activity android:name="com.android.fresco.demo.ImageSizeActivity"/>
+        <activity android:name="com.android.fresco.demo.BitmapActivity"/>
+        <activity android:name="com.android.fresco.demo.BigBigImageActivity"/>
+        <activity android:name="com.android.fresco.demo.AssetsActivity"/>
+        <activity android:name="com.android.fresco.demo.GIFFirstFrameActivity"/>
+        <activity android:name="com.android.fresco.demo.LoadDiskCacheImageActivity"/>
+
+        <activity
+            android:name="com.android.fresco.demo.photo.PhotoWallActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.android.fresco.demo.photo.PhotoAlbumActivity"/>
+
+        <activity
+            android:name="com.android.fresco.demo.photo.PhotoBrowseActivity"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/picture_browse_activity_style"/>
+
+    </application>
+
+</manifest>

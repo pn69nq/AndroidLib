@@ -602,7 +602,7 @@ public class LoadingProgressBarView extends View {
      * Sets the progress listner.
      *
      * @param listener progress listener
-     * @see com.filippudak.ProgressPieView.ProgressPieView.OnProgressListener
+     * @see
      */
     public void setOnProgressListener(OnProgressListener listener) {
         mListener = listener;

@@ -1,4 +1,9 @@
-apply plugin: 'com.android.library'
+if(frescoIsLib.toBoolean()){
+    apply plugin: 'com.android.library'
+}
+else{
+    apply plugin: 'com.android.application'
+}
 
 def cfg = rootProject.ext
 def androidDependencies = cfg.androidDependencies
@@ -9,6 +14,12 @@ android {
     buildToolsVersion cfg.buildToolsVersion
 
     defaultConfig {
+        if(frescoIsLib.toBoolean()){
+
+        }
+        else{
+            applicationId "com.facebook.fresco.helper"
+        }
         minSdkVersion cfg.minSdkVersion
         targetSdkVersion cfg.targetSdkVersion
         versionCode 1
@@ -27,17 +38,37 @@ android {
         checkReleaseBuilds false
     }
 
+    sourceSets {
+        main {
+            if (frescoIsLib.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+
+            } else {
+                manifest.srcFile 'src/simple/AndroidManifest.xml'
+                java.srcDirs 'src/simple/java'
+                res.srcDir 'src/simple/res'
+            }
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     api fresco.frescoCore
     api fresco.frescoGif
     api fresco.frescoWebpsupport
     api fresco.frescoanimatedWebp
     api 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
 
+    if(!frescoIsLib.toBoolean()){
+        implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+        implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+        implementation androidDependencies.support_v7
+        implementation androidDependencies.recyclerView
+    }
+    else{
+    }
     implementation androidDependencies.support_v4
     implementation androidDependencies.cardview_v7
 }
