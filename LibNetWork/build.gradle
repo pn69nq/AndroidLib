@@ -3,11 +3,11 @@ def cfg = rootProject.ext
 def androidDependencies = cfg.androidDependencies
 
 android {
-    compileSdkVersion cfg.androidCompileSdkVersion
+    compileSdkVersion cfg.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion cfg.androidMinSdkVersion
-        targetSdkVersion cfg.androidTargetSdkVersion
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
